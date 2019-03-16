@@ -1,0 +1,17 @@
+{
+   "name": "the54list",
+   "version": "1.0.0",
+   "description": "App where anyone can create account and profile to track the 14'ers they have climbed.",
+   "main": "server.js",
+   "scripts": {
+      "server": "nodemon server.js"
+   },
+   "author": "Dehn Hunsworth",
+   "license": "MIT",
+   "dependencies": {
+      "body-parser": "^1.18.3",
+      "express": "^4.16.4",
+      "mongoose": "^5.4.19",
+      "uuid": "^3.3.2"
+   }
+}
