@@ -10,25 +10,25 @@ router.get("/", (req, res) => {
 // GET /:id
 // fetches a specific user
 router.get("/:id", (req, res) => {
-   res.send("grab single user", req.params.id);
+   res.send(`grab single user with id: ${req.params.id}`);
 });
 
 // POST /:id
 // creates a new user
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
    res.send("create user");
 });
 
 // PUT /:id
 // updates a user profile
-router.get("/", (req, res) => {
-   res.send("update user profile");
+router.put("/:id", (req, res) => {
+   res.send(`update user profile with id:, ${req.params.id}`);
 });
 
 // DELETE /:id
 // deletes a user profile
-router.get("/", (req, res) => {
-   res.send("delete user");
+router.delete("/:id", (req, res) => {
+   res.send(`delete user wid id: ${req.params.id}`);
 });
 
 module.exports = router;
