@@ -8,6 +8,8 @@ import {
    NavItem,
    NavLink
 } from "reactstrap";
+import SignUpModal from "./SignUpModal";
+import LoginModal from "./LoginModal";
 
 export default class MainNav extends Component {
    state = {
@@ -29,12 +31,10 @@ export default class MainNav extends Component {
                <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
                      <NavItem>
-                        <NavLink href="/" title="It's Free!">
-                           Sign Up
-                        </NavLink>
+                        <SignUpModal />
                      </NavItem>
                      <NavItem>
-                        <NavLink href="/">Login</NavLink>
+                        <LoginModal />
                      </NavItem>
                   </Nav>
                </Collapse>
