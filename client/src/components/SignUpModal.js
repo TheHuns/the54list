@@ -46,7 +46,7 @@ class SignUpModal extends Component {
       return (
          <div>
             <Button
-               color="dark"
+               color="light"
                style={{ marginBottom: "2rem" }}
                onClick={this.toggle}
             >
@@ -54,24 +54,42 @@ class SignUpModal extends Component {
             </Button>
 
             <Modal isOpen={this.state.modal} toggle={this.toggle}>
-               <ModalHeader toggle={this.toggle}>Add to parts list</ModalHeader>
+               <ModalHeader toggle={this.toggle}>Sign Up</ModalHeader>
                <ModalBody>
                   <Form onSubmit={this.onSubmit}>
                      <FormGroup>
-                        <Label for="item">Item</Label>
+                        <Label for="item">Name</Label>
                         <Input
                            type="text"
                            name="name"
-                           id="item"
-                           placeholder="Add item to parts list"
+                           id="name"
+                           placeholder="Enter name"
+                           onChange={this.onChange}
+                        />
+                        <br />
+                        <Label for="item">Username</Label>
+                        <Input
+                           type="text"
+                           name="username"
+                           id="username"
+                           placeholder="Choose a username"
+                           onChange={this.onChange}
+                        />
+                        <br />
+                        <Label for="item">Password</Label>
+                        <Input
+                           type="password"
+                           name="password"
+                           id="password"
+                           placeholder="Enter Password"
                            onChange={this.onChange}
                         />
                         <Button
-                           color="light"
+                           color="primary"
                            style={{ marginTop: "2rem" }}
                            block
                         >
-                           Add Item
+                           Submit
                         </Button>
                      </FormGroup>
                   </Form>
