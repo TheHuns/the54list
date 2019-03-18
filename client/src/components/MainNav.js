@@ -31,10 +31,14 @@ export default class MainNav extends Component {
                <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
                      <NavItem>
-                        <SignUpModal />
+                        <NavLink>
+                           <SignUpModal />
+                        </NavLink>
                      </NavItem>
                      <NavItem>
-                        <LoginModal />
+                        <NavLink>
+                           <LoginModal />
+                        </NavLink>
                      </NavItem>
                   </Nav>
                </Collapse>
