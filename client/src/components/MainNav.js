@@ -23,18 +23,18 @@ export default class MainNav extends Component {
    render() {
       return (
          <div>
-            <Navbar color="light" light expand="md">
+            <Navbar color="primary" dark expand="md">
                <NavbarBrand href="/">The54List</NavbarBrand>
                <NavbarToggler onClick={() => this.toggle()} />
                <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
                      <NavItem>
-                        <NavLink href="/components/">Components</NavLink>
+                        <NavLink href="/" title="It's Free!">
+                           Sign Up
+                        </NavLink>
                      </NavItem>
                      <NavItem>
-                        <NavLink href="https://github.com/reactstrap/reactstrap">
-                           GitHub
-                        </NavLink>
+                        <NavLink href="/">Login</NavLink>
                      </NavItem>
                   </Nav>
                </Collapse>

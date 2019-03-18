@@ -1,0 +1,16 @@
+.home-container {
+   display: flex;
+}
+
+.peak-list-container {
+   /* display: flex; */
+   width: 70%;
+}
+
+.peak-card {
+   display: flex;
+   height: 100px;
+   margin: 2rem 0;
+   justify-content: space-around;
+   align-items: center;
+}

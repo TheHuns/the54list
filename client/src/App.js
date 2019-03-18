@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { Route, BrowserRouter, Redirect } from "react-router-dom";
 
 // Import components
 import MainNav from "./components/MainNav";
+import Home from "./components/Home";
+
 // CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -9,10 +12,10 @@ import "./App.css";
 class App extends Component {
    render() {
       return (
-         <React.Fragment>
+         <BrowserRouter>
             <MainNav />
-            <h3>The54list</h3>
-         </React.Fragment>
+            <Route exact path="/" component={Home} />
+         </BrowserRouter>
       );
    }
 }
