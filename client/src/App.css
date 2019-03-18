@@ -1,10 +1,12 @@
 .home-container {
    display: flex;
+   max-width: 1300px;
+   padding-top: 2rem;
 }
 
 .peak-list-container {
    /* display: flex; */
-   width: 70%;
+   width: 65%;
 }
 
 .peak-card {
@@ -13,4 +15,19 @@
    margin: 2rem 0;
    justify-content: space-around;
    align-items: center;
+}
+
+.top-user-list {
+   width: 30%;
+}
+
+.user-card {
+   height: 50px;
+   display: flex;
+   margin: 1rem 0;
+   justify-content: space-around;
+   align-items: center;
+}
+.user-card button {
+   padding: 0.2rem 0.5rem;
 }
