@@ -32,12 +32,12 @@ export default class TopUserList extends Component {
       const { users } = this.state;
       return (
          <Container className="top-user-list">
-            <h3>Top Users:</h3>
+            <h3>Top Users</h3>
             {users.map(({ name, totalPeaks }) => (
                <ListGroup>
                   <ListGroupItem className="user-card">
                      <h5>{name}</h5>
-                     <p>Peaks Climbed: {totalPeaks}</p>
+                     <p>Peaks climbed: {totalPeaks}</p>
                      <Button color="success">Profile</Button>
                   </ListGroupItem>
                </ListGroup>

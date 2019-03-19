@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../../models/User");
+const bcrypt = require("bcryptjs");
 
 // GET /
 // fetches list of top users for home page
 router.get("/", (req, res) => {
-   res.send("list of top users");
+   User.find().then(res => res.json);
 });
 
 // GET /:id
@@ -13,10 +15,49 @@ router.get("/:id", (req, res) => {
    res.send(`grab single user with id: ${req.params.id}`);
 });
 
-// POST /:id
-// creates a new user
+// @route POST api/users
+// @desc Register new user
+// @acess Public
 router.post("/", (req, res) => {
-   res.send("create user");
+   const { name, username, password, confirmPassword } = req.body;
+
+   //    simple validation
+   if ((!name, !username, !password, !confirmPassword)) {
+      return res.status(400).json({ msg: "Pleast enter all fields" });
+   }
+
+   // check that they entered that same password twice
+   if (password !== confirmPassword) {
+      return res.status(400).json({ msg: "Passwords do not match" });
+   }
+
+   //    check for existing user
+   User.findOne({ username }).then(user => {
+      if (user) return res.status(400).json({ msg: "User already exists" });
+
+      const newUser = new User({
+         name,
+         username,
+         password
+      });
+
+      // Create salt & hash
+      bcrypt.genSalt(10, (err, salt) => {
+         bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser.save().then(user => {
+               res.json({
+                  user: {
+                     id: user.id,
+                     name: user.name,
+                     username: user.username
+                  }
+               });
+            });
+         });
+      });
+   });
 });
 
 // PUT /:id

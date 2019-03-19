@@ -4,8 +4,8 @@
    padding-top: 2rem;
 }
 
+/* The Peaks List */
 .peak-list-container {
-   /* display: flex; */
    width: 65%;
 }
 
@@ -16,9 +16,16 @@
    justify-content: space-around;
    align-items: center;
 }
+.peak-card button {
+   justify-self: flex-end;
+}
 
+/* Top User List */
 .top-user-list {
    width: 30%;
+}
+.user-card:first-child {
+   margin-top: 2rem;
 }
 
 .user-card {
@@ -30,4 +37,9 @@
 }
 .user-card button {
    padding: 0.2rem 0.5rem;
+}
+.user-card p,
+.user-card h5 {
+   margin: 0;
+   align-self: center;
 }
