@@ -19,6 +19,10 @@ const PeakSchema = new Schema({
   href: {
     type: String,
     required: true
+  },
+  imgUrl: {
+    type: String,
+    required: true
   }
 });
 
