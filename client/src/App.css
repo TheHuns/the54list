@@ -1,45 +1,49 @@
+body {
+  padding-bottom: 50px;
+}
+
 .home-container {
-   display: flex;
-   max-width: 1300px;
-   padding-top: 2rem;
+  display: flex;
+  max-width: 1300px;
+  padding-top: 2rem;
 }
 
 /* The Peaks List */
 .peak-list-container {
-   width: 65%;
+  width: 65%;
 }
 
 .peak-card {
-   display: flex;
-   height: 100px;
-   margin: 2rem 0;
-   justify-content: space-around;
-   align-items: center;
+  display: flex;
+  height: 100px;
+  margin: 2rem 0;
+  justify-content: space-around;
+  align-items: center;
 }
 .peak-card button {
-   justify-self: flex-end;
+  justify-self: flex-end;
 }
 
 /* Top User List */
 .top-user-list {
-   width: 30%;
+  width: 30%;
 }
 .user-card:first-child {
-   margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .user-card {
-   height: 50px;
-   display: flex;
-   margin: 1rem 0;
-   justify-content: space-around;
-   align-items: center;
+  height: 50px;
+  display: flex;
+  margin: 1rem 0;
+  justify-content: space-around;
+  align-items: center;
 }
 .user-card button {
-   padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.5rem;
 }
 .user-card p,
 .user-card h5 {
-   margin: 0;
-   align-self: center;
+  margin: 0;
+  align-self: center;
 }
