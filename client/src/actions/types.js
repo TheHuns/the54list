@@ -14,3 +14,5 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const GET_USERS = "GET_USERS";
+export const GET_PEAKS = "GET_PEAKS";
+export const PEAKS_LOADING = "PEAKS_LOADING";

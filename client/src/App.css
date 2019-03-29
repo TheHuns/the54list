@@ -2,6 +2,12 @@ body {
   padding-bottom: 50px;
 }
 
+/* Navbar */
+.nav-link {
+  margin-top: 1rem;
+}
+
+/* Container */
 .home-container {
   display: flex;
   max-width: 1300px;

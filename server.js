@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const users = require("./routes/api/users");
+const peaks = require("./routes/api/peaks");
 
 const app = express();
 
@@ -13,13 +14,14 @@ const db = require("./config/keys").URI;
 
 // Connect to db
 mongoose
-   .connect(db, {
-      useNewUrlParser: true
-   })
-   .then(() => console.log("Mongo DB connected"))
-   .catch(err => console.log(err));
+  .connect(db, {
+    useNewUrlParser: true
+  })
+  .then(() => console.log("Mongo DB connected"))
+  .catch(err => console.log(err));
 
 app.use("/api/users", users);
+app.use("/api/peaks", peaks);
 
 const port = process.env.Port || 5000;
 
