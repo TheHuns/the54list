@@ -1,4 +1,0 @@
-module.exports = {
-   URI:
-      "mongodb+srv://dehnger:Bayfield85%21@cluster0-cho1k.mongodb.net/the54list?retryWrites=true"
-};

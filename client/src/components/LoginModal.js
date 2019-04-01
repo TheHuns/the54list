@@ -1,94 +1,124 @@
 import React, { Component } from "react";
 import {
-   Button,
-   Modal,
-   ModalHeader,
-   ModalBody,
-   Form,
-   FormGroup,
-   Label,
-   Input
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Alert,
+  NavLink
 } from "reactstrap";
+import { connect } from "react-redux";
+import { login } from "../actions/userActions";
+import { clearErrors } from "../actions/errorActions";
 
 class LoginModal extends Component {
-   state = {
-      modal: false,
-      name: ""
-   };
+  state = {
+    modal: false,
+    name: "",
+    username: "",
+    password: "",
+    msg: null
+  };
 
-   toggle = () => {
-      this.setState({
-         modal: !this.state.modal
-      });
-   };
+  componentDidUpdate(prevProps) {
+    const { error, isAuthenticated } = this.props;
+    if (error !== prevProps.error) {
+      // Check for register error
+      if (error.id === "LOGIN_FAIL") {
+        this.setState({ msg: error.msg.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
 
-   onChange = e => {
-      this.setState({
-         [e.target.name]: e.target.value
-      });
-   };
+    // IF register success close modal
+    if (this.state.modal) {
+      if (isAuthenticated) {
+        this.toggle();
+      }
+    }
+  }
 
-   onSubmit = e => {
-      e.preventDefault();
+  toggle = () => {
+    this.props.clearErrors();
+    this.setState({
+      modal: !this.state.modal
+    });
+  };
 
-      //   const newItem = {
-      //      name: this.state.name
-      //   };
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
-      //   //Add item via addItem action
-      //   this.props.addItem(newItem);
+  onSubmit = e => {
+    e.preventDefault();
 
-      //Close modal
-      this.toggle();
-   };
+    const { username, password } = this.state;
 
-   render() {
-      return (
-         <div>
-            <Button
-               color="light"
-               style={{ marginBottom: "2rem" }}
-               onClick={this.toggle}
-            >
-               Login
-            </Button>
+    const user = {
+      username,
+      password
+    };
+    // Attempt login
+    this.props.login(user);
+  };
 
-            <Modal isOpen={this.state.modal} toggle={this.toggle}>
-               <ModalHeader toggle={this.toggle}>Login</ModalHeader>
-               <ModalBody>
-                  <Form onSubmit={this.onSubmit}>
-                     <FormGroup>
-                        <Label for="item">Username</Label>
-                        <Input
-                           type="text"
-                           name="username"
-                           id="username"
-                           placeholder="Choose a username"
-                           onChange={this.onChange}
-                        />
-                        <br />
-                        <Label for="item">Password</Label>
-                        <Input
-                           type="password"
-                           name="password"
-                           id="password"
-                           placeholder="Enter Password"
-                           onChange={this.onChange}
-                        />
-                        <Button
-                           color="primary"
-                           style={{ marginTop: "2rem" }}
-                           block
-                        >
-                           Login
-                        </Button>
-                     </FormGroup>
-                  </Form>
-               </ModalBody>
-            </Modal>
-         </div>
-      );
-   }
+  render() {
+    return (
+      <div>
+        <NavLink color="light" onClick={this.toggle}>
+          Login
+        </NavLink>
+
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>Login</ModalHeader>
+          <ModalBody>
+            {this.state.msg ? (
+              <Alert color="danger">{this.state.msg}</Alert>
+            ) : null}
+            <Form onSubmit={this.onSubmit}>
+              <FormGroup>
+                <Label for="item">Username</Label>
+                <Input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Enter username"
+                  onChange={this.onChange}
+                />
+                <br />
+                <Label for="item">Password</Label>
+                <Input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Enter Password"
+                  onChange={this.onChange}
+                />
+                <Button color="primary" style={{ marginTop: "2rem" }} block>
+                  Login
+                </Button>
+              </FormGroup>
+            </Form>
+          </ModalBody>
+        </Modal>
+      </div>
+    );
+  }
 }
 
-export default LoginModal;
+const mapStateToProps = state => ({
+  isAuthenticated: state.user.isAuthenticated,
+  error: state.error
+});
+
+export default connect(
+  mapStateToProps,
+  { login, clearErrors }
+)(LoginModal);

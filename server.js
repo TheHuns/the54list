@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const users = require("./routes/api/users");
 const peaks = require("./routes/api/peaks");
+const config = require("config");
 
 const app = express();
 
@@ -10,12 +11,13 @@ const app = express();
 app.use(express.json());
 
 // DB config
-const db = require("./config/keys").URI;
+const db = config.get("URI");
 
 // Connect to db
 mongoose
   .connect(db, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true
   })
   .then(() => console.log("Mongo DB connected"))
   .catch(err => console.log(err));

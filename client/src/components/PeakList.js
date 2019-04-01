@@ -18,8 +18,8 @@ class PeakList extends Component {
     return (
       <Container className="peak-list-container">
         <h2>The Peaks</h2>
-        {peaks.map(({ name, elevation, rank, href, imgUrl }) => (
-          <ListGroup>
+        {peaks.map(({ name, elevation, rank, href, imgUrl, _id }) => (
+          <ListGroup key={_id}>
             <ListGroupItem className="peak-card">
               <img width="100px" src={imgUrl} alt={name} />
               <h3>{name}</h3>

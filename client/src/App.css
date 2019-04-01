@@ -2,9 +2,9 @@ body {
   padding-bottom: 50px;
 }
 
-/* Navbar */
-.nav-link {
-  margin-top: 1rem;
+/* MainNav */
+a {
+  cursor: pointer;
 }
 
 /* Container */

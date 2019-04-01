@@ -18,8 +18,8 @@ class TopUserList extends Component {
     return (
       <Container className="top-user-list">
         <h3>Top Users</h3>
-        {users.map(({ name, totalPeaks }) => (
-          <ListGroup>
+        {users.map(({ name, totalPeaks, _id }) => (
+          <ListGroup key={_id}>
             <ListGroupItem className="user-card">
               <h5>{name}</h5>
               <p>Peaks climbed: {totalPeaks}</p>
