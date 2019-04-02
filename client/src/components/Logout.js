@@ -14,7 +14,7 @@ class Logout extends Component {
       <React.Fragment>
         <NavLink
           onClick={this.props.logout}
-          href="#"
+          href="/"
           style={{ marginTop: "0" }}
         >
           Logout

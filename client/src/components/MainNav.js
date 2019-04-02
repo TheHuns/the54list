@@ -11,6 +11,7 @@ import SignUpModal from "./SignUpModal";
 import LoginModal from "./LoginModal";
 import Logout from "./Logout";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 class MainNav extends Component {
   state = {
@@ -32,6 +33,11 @@ class MainNav extends Component {
           <span className="navbar-text mr-3">
             <strong>{user ? `Welcome ${user.name}` : ""} </strong>
           </span>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/profile" id="profile-link">
+            Profile
+          </NavLink>
         </NavItem>
         <NavItem>
           <Logout />

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { Route, BrowserRouter } from "react-router-dom";
 
 // Import components
 import MainNav from "./components/MainNav";
 import Home from "./components/Home";
+import UserProfile from "./components/UserProfile";
 
 // Redux
 import store from "./store";
@@ -21,8 +23,12 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <MainNav />
-        <Home />
+        <BrowserRouter>
+          <MainNav />
+
+          <Route exact path="/" component={Home} />
+          <Route path="/profile" component={UserProfile} />
+        </BrowserRouter>
       </Provider>
     );
   }

@@ -14,6 +14,7 @@ import {
 import { connect } from "react-redux";
 import { login } from "../actions/userActions";
 import { clearErrors } from "../actions/errorActions";
+import { Redirect } from "react-router-dom";
 
 class LoginModal extends Component {
   state = {
@@ -39,6 +40,7 @@ class LoginModal extends Component {
     if (this.state.modal) {
       if (isAuthenticated) {
         this.toggle();
+        return <Redirect to="/profile" />;
       }
     }
   }
