@@ -39,8 +39,13 @@ class UserProfile extends Component {
             alt="Avatar Image"
           />
           <CardBody>
-            <CardTitle>{name}</CardTitle>
-            <CardSubtitle>Peaks bagged: {totalPeaks}</CardSubtitle>
+            <CardTitle>
+              <strong>Name: </strong>
+              {name}
+            </CardTitle>
+            <CardSubtitle>
+              <strong>Peaks bagged: </strong> {totalPeaks}
+            </CardSubtitle>
             <CardText>Bio:{this.state.bio}</CardText>
             {isAuthenticated ? editButton : null}
           </CardBody>
