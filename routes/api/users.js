@@ -10,6 +10,7 @@ const config = require("config");
 // fetches list of top users for home page
 router.get("/", (req, res) => {
   User.find()
+    .sort({ totalPeaks: -1 })
     .limit(5)
     .then(users => res.json(users));
 });
