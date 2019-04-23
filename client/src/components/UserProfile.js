@@ -10,6 +10,7 @@ import {
   Button
 } from "reactstrap";
 import { connect } from "react-redux";
+import ProfileEditModal from "./ProfileEditModal";
 
 class UserProfile extends Component {
   state = {
@@ -17,13 +18,7 @@ class UserProfile extends Component {
   };
 
   render() {
-    const { name, totalPeaks, isAuthenticated } = this.props.user;
-
-    const editButton = (
-      <Fragment>
-        <Button href="#">Edit Profile</Button>
-      </Fragment>
-    );
+    const { name, totalPeaks } = this.props.user;
 
     const imgStyle = {
       height: "200px",
@@ -47,7 +42,7 @@ class UserProfile extends Component {
               <strong>Peaks bagged: </strong> {totalPeaks}
             </CardSubtitle>
             <CardText>Bio:{this.state.bio}</CardText>
-            {isAuthenticated ? editButton : null}
+            <ProfileEditModal />
           </CardBody>
         </Card>
       </Container>
