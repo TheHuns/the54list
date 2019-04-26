@@ -1,25 +1,26 @@
 {
-   "name": "the54list",
-   "version": "1.0.0",
-   "description": "App where anyone can create account and profile to track the 14'ers they have climbed.",
-   "main": "server.js",
-   "scripts": {
-      "client-install": "npm install --prefix client",
-      "start": "node server.js",
-      "server": "nodemon server.js",
-      "client": "npm start --prefix client",
-      "dev": "concurrently \"npm run server\" \"npm run client\""
-   },
-   "author": "Dehn Hunsworth",
-   "license": "MIT",
-   "dependencies": {
-      "bcryptjs": "^2.4.3",
-      "body-parser": "^1.18.3",
-      "concurrently": "^4.1.0",
-      "config": "^3.0.1",
-      "express": "^4.16.4",
-      "jsonwebtoken": "^8.5.1",
-      "mongoose": "^5.4.19",
-      "uuid": "^3.3.2"
-   }
+  "name": "the54list",
+  "version": "1.0.0",
+  "description": "App where anyone can create account and profile to track the 14'ers they have climbed.",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "Dehn Hunsworth",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "config": "^3.0.1",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.4.19",
+    "uuid": "^3.3.2"
+  }
 }
