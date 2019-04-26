@@ -37,11 +37,11 @@ class UserProfile extends Component {
       width: "200px"
     };
 
-    const noPeaks = {
-      (<React.Fragment>
-      <h3>None yet...sad face</h3>
-      </React.Fragment>)
-    }
+    // const noPeaks = {
+    //   (<React.Fragment>
+    //   <h3>None yet...sad face</h3>
+    //   </React.Fragment>)
+    // }
 
     return (
       <Container className="mt-4 p-4">
@@ -62,14 +62,15 @@ class UserProfile extends Component {
             <CardText>
               <strong>Peaks checked off the list:</strong>
             </CardText>
-            {if(peakList.length === 0){
-              return()
-            } else {
-              
-              peakList.map((peak, index) => {
-              return <ProfilePeakCard key={index} peak={peak} />;
-            
-            })}}
+            {peakList => {
+              if (peakList.length === 0) {
+                return <h2>No peaks yet...sad face</h2>;
+              } else {
+                peakList.map((peak, index) => {
+                  return <ProfilePeakCard key={index} peak={peak} />;
+                });
+              }
+            }}
             <ProfileEditModal />
           </CardBody>
         </Card>
