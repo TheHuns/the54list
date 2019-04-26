@@ -8,7 +8,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   AUTH_ERROR,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
+  UPDATE_USER
 } from "../actions/types";
 
 const initialState = {
@@ -37,6 +38,7 @@ export default (state = initialState, action) => {
     case USER_LOADING:
       return { ...state, isLoading: true };
 
+    case UPDATE_USER:
     case USER_LOADED:
       return {
         ...state,

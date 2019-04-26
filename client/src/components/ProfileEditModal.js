@@ -8,19 +8,16 @@ import {
   FormGroup,
   Label,
   Input,
-  Alert,
-  NavLink
+  Alert
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { clearErrors } from "../actions/errorActions";
+import { updateUser } from "../actions/userActions";
 
 class ProfileEditModal extends Component {
   state = {
     modal: false,
-    mtElbert: "",
-    mtMassive: "",
-    mtHarvard: "",
     msg: null
   };
 
@@ -44,6 +41,16 @@ class ProfileEditModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    const { username } = this.props.user;
+
+    // create array of peaks from the state
+    let peakList = Object.keys(this.state);
+    peakList = peakList.slice(2);
+
+    // attempt to save to db
+    this.props.updateUser(username, peakList);
+
+    this.toggle();
   };
 
   render() {
@@ -55,36 +62,37 @@ class ProfileEditModal extends Component {
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Update Peaks</ModalHeader>
-          <ModalBody>
+          <ModalBody className="p-3" id="edit-modal">
             {this.state.msg ? (
               <Alert color="danger">{this.state.msg}</Alert>
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="item">Mt. Elbert</Label>
                 <Input
                   type="checkbox"
                   name="mtElbert"
                   id="mtElbert"
                   onChange={this.onChange}
                 />
-                <br />
-                <Label for="item">Mt. Massive</Label>
+                <Label for="mtElbert">Mt. Elbert</Label>
+              </FormGroup>
+              <FormGroup>
                 <Input
                   type="checkbox"
                   name="mtMassive"
                   id="mtMassive"
                   onChange={this.onChange}
                 />
-                <br />
-                <Label for="item">Mt. Harvard</Label>
+                <Label for="item">Mt. Massive</Label>
+              </FormGroup>
+              <FormGroup>
                 <Input
                   type="checkbox"
                   name="mtHarvard"
                   id="mtHarvard"
                   onChange={this.onChange}
                 />
-                <br />
+                <Label for="item">Mt. Harvard</Label>
 
                 <Button color="primary" style={{ marginTop: "2rem" }} block>
                   Save
@@ -99,11 +107,12 @@ class ProfileEditModal extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.user.user,
   isAuthenticated: state.user.isAuthenticated,
   error: state.error
 });
 
 export default connect(
   mapStateToProps,
-  { clearErrors }
+  { clearErrors, updateUser }
 )(ProfileEditModal);

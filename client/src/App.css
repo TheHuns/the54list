@@ -62,3 +62,10 @@ a {
   margin: 0;
   align-self: center;
 }
+
+#edit-modal input {
+  margin-left: 0 !important;
+}
+#edit-modal label {
+  margin-left: 1.5rem;
+}

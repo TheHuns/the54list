@@ -126,8 +126,27 @@ router.get("/user", auth, (req, res) => {
 
 // PUT /:id
 // updates a user profile
-router.put("/:id", (req, res) => {
-  res.send(`update user profile with id:, ${req.params.id}`);
+router.put("/", (req, res) => {
+  const { peakList, username } = req.body;
+
+  User.findOne({ username }).then(user => {
+    if (!user)
+      return res
+        .status(400)
+        .json({ msg: "Cannot find user to update, try again later" });
+
+    // updates peak list for user
+    user.peakList = peakList;
+
+    // saves user data
+    user.save(function(err) {
+      if (err)
+        return res
+          .status(400)
+          .json({ msg: "Could not save user, try again later" });
+      res.json(user);
+    });
+  });
 });
 
 // DELETE /:id

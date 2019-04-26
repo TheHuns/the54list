@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import {
   Container,
   Card,
@@ -6,24 +6,42 @@ import {
   CardBody,
   CardImg,
   CardSubtitle,
-  CardText,
-  Button
+  CardText
 } from "reactstrap";
 import { connect } from "react-redux";
 import ProfileEditModal from "./ProfileEditModal";
+import ProfilePeakCard from "./ProfilePeakCard";
 
 class UserProfile extends Component {
   state = {
-    bio: "Some stuff about this guy"
+    bio: "Some stuff about this guy",
+    peakCount: 0
   };
 
+  componentDidMount() {
+    const peakCount = this.props.user.peakList.length;
+    if (peakCount === 0) {
+      return;
+    } else {
+      this.setState({
+        peakCount: this.props.user.peakList.length
+      });
+    }
+  }
+
   render() {
-    const { name, totalPeaks } = this.props.user;
+    const { name, peakList } = this.props.user;
 
     const imgStyle = {
       height: "200px",
       width: "200px"
     };
+
+    const noPeaks = {
+      (<React.Fragment>
+      <h3>None yet...sad face</h3>
+      </React.Fragment>)
+    }
 
     return (
       <Container className="mt-4 p-4">
@@ -39,9 +57,19 @@ class UserProfile extends Component {
               {name}
             </CardTitle>
             <CardSubtitle>
-              <strong>Peaks bagged: </strong> {totalPeaks}
+              <strong>Peaks count: </strong> {this.state.peakCount}
             </CardSubtitle>
-            <CardText>Bio:{this.state.bio}</CardText>
+            <CardText>
+              <strong>Peaks checked off the list:</strong>
+            </CardText>
+            {if(peakList.length === 0){
+              return()
+            } else {
+              
+              peakList.map((peak, index) => {
+              return <ProfilePeakCard key={index} peak={peak} />;
+            
+            })}}
             <ProfileEditModal />
           </CardBody>
         </Card>

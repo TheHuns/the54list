@@ -11,7 +11,8 @@ import {
   LOGOUT_SUCCESS,
   USER_LOADED,
   USER_LOADING,
-  AUTH_ERROR
+  AUTH_ERROR,
+  UPDATE_USER
 } from "./types";
 
 // Get users for top user list
@@ -125,6 +126,32 @@ export const loadUser = () => (dispatch, getState) => {
     .then(res =>
       dispatch({
         type: USER_LOADED,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR
+      });
+    });
+};
+
+// Update user profile
+export const updateUser = (username, peakList) => dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  // Request body
+  const body = JSON.stringify({ username, peakList });
+  axios
+    .put("/api/users", body, config)
+    .then(res =>
+      dispatch({
+        type: UPDATE_USER,
         payload: res.data
       })
     )
