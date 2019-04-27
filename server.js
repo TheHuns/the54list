@@ -23,7 +23,7 @@ mongoose
   .then(() => console.log("Mongo DB connected"))
   .catch(err => console.log(err));
 
-app.use("https://the54list.herokuapp.com/api/users", users);
+app.use("/api/users", users);
 app.use("/api/peaks", peaks);
 
 // Server static assets if in production
