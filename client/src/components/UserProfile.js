@@ -30,7 +30,7 @@ class UserProfile extends Component {
   }
 
   render() {
-    const { name, peakList } = this.props.user;
+    const { name } = this.props.user;
 
     const imgStyle = {
       height: "200px",
