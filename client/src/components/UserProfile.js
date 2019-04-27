@@ -11,13 +11,17 @@ import {
 import { connect } from "react-redux";
 import ProfileEditModal from "./ProfileEditModal";
 import ProfilePeakCard from "./ProfilePeakCard";
+import store from "../store";
+import { loadUser } from "../actions/userActions";
 
 class UserProfile extends Component {
   state = {
     bio: "Some stuff about this guy",
     peakCount: 0
   };
-
+  componentWillMount() {
+    store.dispatch(loadUser());
+  }
   componentDidMount() {
     const peakCount = this.props.user.peakList.length;
     if (peakCount === 0) {
@@ -30,7 +34,7 @@ class UserProfile extends Component {
   }
 
   render() {
-    const { name } = this.props.user;
+    const { name, peakList } = this.props.user;
 
     const imgStyle = {
       height: "200px",
@@ -62,15 +66,10 @@ class UserProfile extends Component {
             <CardText>
               <strong>Peaks checked off the list:</strong>
             </CardText>
-            {peakList => {
-              if (peakList.length === 0) {
-                return <h2>No peaks yet...sad face</h2>;
-              } else {
-                peakList.map((peak, index) => {
-                  return <ProfilePeakCard key={index} peak={peak} />;
-                });
-              }
-            }}
+            {peakList.length > 0 &&
+              peakList.map((peak, index) => (
+                <ProfilePeakCard key={index} peak={peak} />
+              ))}
             <ProfileEditModal />
           </CardBody>
         </Card>
