@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const users = require("./routes/api/users");
 const peaks = require("./routes/api/peaks");
 const config = require("config");
+const path = require("path");
 
 const app = express();
 
@@ -22,7 +23,7 @@ mongoose
   .then(() => console.log("Mongo DB connected"))
   .catch(err => console.log(err));
 
-app.use("/api/users", users);
+app.use("https://the54list.herokuapp.com/api/users", users);
 app.use("/api/peaks", peaks);
 
 // Server static assets if in production
